@@ -7,6 +7,7 @@ import {Route, Routes} from "react-router-dom";
 import {BooksPage} from "./pages/BooksPage";
 import {CreateBookPage} from "./pages/CreateBookPage";
 import {Layout} from "./layout/Layout";
+import { BookDescription } from './pages/BookDescriptionPage';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
               <Route path="/" element={<Layout />}>
                   <Route index element={<BooksPage />} />
                   <Route path="create" element={<CreateBookPage />} />
+                  <Route path="books/description" element={<BookDescription />} />
 
 
                   {/* Using path="*"" means "match anything", so this route
