@@ -19,10 +19,10 @@ class Book {
 }
 
 export const CreateBookPage = () => {
-    var title: string;
-    var description: string;
-    var categories: string;
-    var author: string;
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [categories, setCategories] = useState("");
+    const [author, setAuthor] = useState("");
 
     const create = () => {
         if (title && description && categories && author) {
@@ -41,27 +41,27 @@ export const CreateBookPage = () => {
                     });
                 });
         } else {
-            toast.warning("missong fields", {
+            toast.warning("missing fields", {
                 position: toast.POSITION.TOP_RIGHT,
                 autoClose: 3000,
             });
         }
     }
 
-    const getTitle = (e) => {
-        title = e.target.value;
+    const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setTitle(e.target.value);
     }
 
-    const getDescription = (e) => {
-        description = e.target.value;
+    const handleDescriptionChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setDescription(e.target.value);
     }
 
-    const getAuthor = (e) => {
-        author = e.target.value;
+    const handleAuthorChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setAuthor(e.target.value);
     }
 
-    const getCategories = (e) => {
-        categories = e.target.value;
+    const handleCategoriesChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setCategories(e.target.value);
     }
 
     return (
@@ -72,25 +72,25 @@ export const CreateBookPage = () => {
                 <div className="basis-1/4  mx-2">
                     <div>
                         <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
-                        <input type="text" onChange={(e) => getTitle(e)} id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="title" required />
+                        <input type="text" onChange={handleTitleChange} id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="title" required />
                     </div>
                 </div>
                 <div className="basis-1/4 mx-2">
                     <div>
                         <label for="author" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Author</label>
-                        <input type="text" onChange={(e) => getAuthor(e)} id="author" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="author" required />
+                        <input type="text" onChange={handleDescriptionChange} id="author" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="author" required />
                     </div>
                 </div>
                 <div className="basis-1/4  mx-2 ">
                     <div>
                         <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                        <input type="text" onChange={(e) => getDescription(e)} id="description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="description" required />
+                        <input type="text" onChange={handleAuthorChange} id="description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="description" required />
                     </div>
                 </div>
                 <div className="basis-1/4  mx-2 ">
                     <div>
                         <label for="categories" class="block text-sm font-medium text-gray-900 dark:text-white">Categories</label>
-                        <input type="text" onChange={(e) => getCategories(e)} id="categories" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="categories (category1, category2,...." required />
+                        <input type="text" onChange={handleCategoriesChange} id="categories" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="categories (category1, category2,...." required />
                     </div>
                 </div>
 

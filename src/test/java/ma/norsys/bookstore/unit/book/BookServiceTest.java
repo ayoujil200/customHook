@@ -1,17 +1,14 @@
-package ma.norsys.bookstore.book;
+package ma.norsys.bookstore.unit.book;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -46,21 +43,19 @@ public class BookServiceTest {
 	}
 
 	@Test
+	// search with categories and titles
 	void testSearchByCategoriesAndTitles() {
 		when(bookRepository.findByCategoriesContainingAndTitleContaining(anyString(), anyString())).thenReturn(books.subList(0, 2));
 
 	    List<Book> result = bookService.search("category1,category2", "title1,title2");
 
-	    // Assert that the result contains only the first two books in the books list
 	    assertEquals(2, result.size());
 	    assertTrue(result.contains(books.get(0)));
 	    assertTrue(result.contains(books.get(1)));
-	    
-	    //verify(bookRepository).findByCategoriesContainingOrTitleContaining("category1", "title1");
-	    //verify(bookRepository).findByCategoriesContainingOrTitleContaining("category1", "title2");
 	}
 
 	@Test
+	// search with categories only
 	void testSearchByCategoriesOnly() {
 		when(bookRepository.findByCategoriesContaining(anyString()))
 				.thenReturn(Arrays.asList(books.get(0), books.get(1)));
@@ -73,6 +68,7 @@ public class BookServiceTest {
 	}
 
 	@Test
+	// search with titles only
 	void testSearchByTitlesOnly() {
 		when(bookRepository.findByTitleContaining(anyString())).thenReturn(Arrays.asList(books.get(0), books.get(1)));
 
@@ -85,10 +81,12 @@ public class BookServiceTest {
 	}
 
 	@Test
+	// search with no categories and no titles
 	void testSearchWithNoCategoriesAndTitles() {
+		when(bookRepository.findAll()).thenReturn(books);
 		List<Book> result = bookService.search(null, null);
 
-		assertThat(result).isEqualTo(Collections.emptyList());
-		verifyNoInteractions(bookRepository);
+		assertEquals(3, result.size());
+        assertTrue(result.containsAll(books));
 	}
 }
